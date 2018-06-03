@@ -30,10 +30,10 @@ class MainController extends Controller
      */
     public function getShort(Request $request): JsonResponse
     {
-        if ($request->has('url') && $request->input('url') !== null) {
+        if (($url = $request->input('url')) && ($prefix = $request->input('prefix'))) {
             return new JsonResponse([
                 'status' => self::STATUS_SUCCESS,
-                'short'  => UrlShortener::generateShortUrl($request->input('url')),
+                'short'  => $prefix.UrlShortener::generateShortUrl($url),
             ], 200);
         }
 
