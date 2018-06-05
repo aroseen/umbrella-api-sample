@@ -33,7 +33,7 @@ class MainController extends Controller
         if (($url = $request->input('url')) && ($prefix = $request->input('prefix'))) {
             return new JsonResponse([
                 'status' => self::STATUS_SUCCESS,
-                'short'  => $prefix.UrlShortener::generateShortUrl($url),
+                'short'  => $prefix.'/'.UrlShortener::generateShortUrl($url),
             ], 200);
         }
 
